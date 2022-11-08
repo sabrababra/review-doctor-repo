@@ -1,8 +1,10 @@
 import React from 'react';
 import HeadTitle from '../../components/HeadTitle.js';
 import SingleReviewCard from '../../components/SingleReviewCard.js.js';
+import UseTitle from '../../hooks/UseTitle.js';
 
 const Reviews = () => {
+    UseTitle('Reviews');
     return (
         <div className='bg-base-200'>
             <HeadTitle

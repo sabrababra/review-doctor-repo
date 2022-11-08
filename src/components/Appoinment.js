@@ -54,6 +54,7 @@ const Appoinment = () => {
                                 </div>
                             </div>
                         </form>
+                        
                     </div>
                 </div>
             </div>

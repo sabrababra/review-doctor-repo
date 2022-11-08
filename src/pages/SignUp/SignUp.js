@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import { toast } from 'react-toastify';
 import loginImg from '../../assets/login.jpg';
+import UseTitle from '../../hooks/UseTitle';
 
 const SignUp = () => {
 
     const { createProviderWithEmail, updateUserProfile } = useContext(AuthContext);
     const [error, setError] = useState('');
+    UseTitle('Register')
 
     const handleRegister = (event) => {
         event.preventDefault();

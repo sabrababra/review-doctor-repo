@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import HeadTitle from '../../components/HeadTitle';
 import { AuthContext } from '../../context/AuthProvider';
+import UseTitle from '../../hooks/UseTitle';
 
 const Profile = () => {
+    UseTitle('Profile');
     const { user } = useContext(AuthContext);
     return (
         <div className='bg-base-200 min-h-[60vh] flex  justify-center items-center'>

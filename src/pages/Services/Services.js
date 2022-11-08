@@ -1,8 +1,10 @@
 import React from 'react';
 import HeadTitle from '../../components/HeadTitle';
 import ServiceCard from '../../components/ServiceCard';
+import UseTitle from '../../hooks/UseTitle';
 
 const Services = () => {
+    UseTitle('Services')
     return (
         <div className='bg-base-200'>
             <HeadTitle
