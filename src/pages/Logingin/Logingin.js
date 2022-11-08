@@ -1,8 +1,67 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGithub, FaGoogle } from "react-icons/fa";
-
+import { AuthContext } from '../../context/AuthProvider';
+import {  toast } from 'react-toastify';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 const Logingin = () => {
+    const location = useLocation();
+    // useTitle('Login')
+    const from = location.state?.from?.pathname || '/';
+    const navigate=useNavigate();
+    const [error, setError] = useState('');
+    const {signInWithEmail,providerLogin}=useContext(AuthContext)
+    const handleLogin = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        //console.log(email, password);
+        signInWithEmail(email,password)
+        .then(res=>{
+            const user=res.user;
+            from.reset();
+            toast.success('Login successfully');
+        })
+        .catch(error=>{
+            console.error(error);
+            setError(error.message);
+        })
+
+
+    }
+    const googleProvider= new GoogleAuthProvider();
+    const handleGoogleSignIn=()=>{
+        providerLogin(googleProvider)
+        .then(res=>{
+            const user=res.user;
+            //console.log(user);
+           // form.reset();
+           navigate(from, {replace: true});
+           toast.success('Login successfully');
+        })
+        .catch(error=>{
+            console.error('error: ',error);
+            setError(error.message);
+        })
+    }
+
+    const gitHubProvider=new GithubAuthProvider()
+    const handleGithubSignIn=()=>{
+        providerLogin(gitHubProvider)
+        .then(res=>{
+            const user=res.user;
+            //console.log(user);
+           // form.reset();
+           navigate(from, {replace: true});
+           toast.success('Login successfully');
+        })
+        .catch(error=>{
+            console.error('error: ',error);
+            setError(error.message);
+        })
+    }
+
     return (
         <div className="flex gap-5  min-h-screen bg-base-200  flex-col justify-center items-center">
 
@@ -12,7 +71,7 @@ const Logingin = () => {
             </div>
             <div className="card w-11/12 lg:w-4/12  mx-auto  shadow-2xl bg-base-100">
                 <div className="card-body">
-                    <form >
+                    <form onSubmit={handleLogin}>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -33,6 +92,9 @@ const Logingin = () => {
                             </label>
 
                         </div>
+                        {
+                        error&&<p className='text-red-500'>{error}</p>
+                    }
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
                         </div>
@@ -40,8 +102,8 @@ const Logingin = () => {
                     </form>
                     <div className="divider">OR</div>
                     <div className=" flex m-0 p-0 ">
-                        <button className="mb-5"><FaGoogle className=' text-2xl hover:text-primary '></FaGoogle></button>
-                        <button className=""><FaGithub className=' text-2xl hover:text-primary'></FaGithub></button>
+                        <button onClick={handleGoogleSignIn} className="mb-5"><FaGoogle className=' text-2xl hover:text-primary '></FaGoogle></button>
+                        <button onClick={handleGithubSignIn} className=""><FaGithub className=' text-2xl hover:text-primary'></FaGithub></button>
                     </div>
                 </div>
             </div>
