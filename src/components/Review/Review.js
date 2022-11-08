@@ -1,13 +1,15 @@
 import React from 'react';
+import HeadTitle from '../HeadTitle';
 import './Review.css';
 const Review = () => {
     return (
         <div>
-            <div className=' mt-20 '>
-                <span className=' text-primary font-semibold text-5xl border-b-2 border-primary '>Reviews</span>
-                <h1 className='text-2xl mt-3  '>See What Are The Patients
-                    Saying About me</h1>
-            </div>
+            <HeadTitle
+                title='Reviews'
+                comment='See What Are The Patients
+            Saying About me'
+            />
+
             <div className="flex">
                 <div className="comments">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.

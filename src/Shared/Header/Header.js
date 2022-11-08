@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FiLogIn } from 'react-icons/fi'
+import { FiLogIn, FiLogOut } from 'react-icons/fi'
 import { AuthContext } from '../../context/AuthProvider';
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, providerLogOut } = useContext(AuthContext);
     console.log(user);
     return (
         <div className="navbar bg-base-100">
@@ -45,9 +45,17 @@ const Header = () => {
                                     <img src={user?.photoURL} />
                                 </div>
                             </label>
-                            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><a className="justify-between"> Profile</a></li>
-                                <li><button className='btn btn-danger'>Logout</button></li>
+                            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 font-semibold">
+                                <li><Link to='/profile' className="justify-between"> Profile</Link></li>
+                                <li>
+                                    <p
+                                        className='text-error'
+                                        onClick={() => providerLogOut()}
+                                    >
+                                        Logout
+                                        <FiLogOut className='ml-2' />
+                                    </p>
+                                </li>
                             </ul>
                         </div>
                         :
