@@ -1,8 +1,15 @@
+import Main from "../layout/Main";
+import Blogs from "../pages/Blogs/Blogs";
+import Home from "../pages/Home/Home";
+import Logingin from "../pages/Logingin/Logingin";
+
+import Services from "../pages/Services/Services";
+import SignUp from "../pages/SignUp/SignUp";
+
+
 const { createBrowserRouter } = require("react-router-dom");
-const { default: Main } = require("../layout/Main");
-const { default: Blogs } = require("../pages/Blogs/Blogs");
-const { default: Home } = require("../pages/Home/Home");
-const { default: Services } = require("../pages/Services/Services");
+
+
 
 export const router=createBrowserRouter([
     {
@@ -25,6 +32,15 @@ export const router=createBrowserRouter([
                 path:'/services',
                 element:<Services></Services>
             },
+           {
+            path:'/signup',
+            element:<SignUp></SignUp>
+           },
+           {
+            path:'/login',
+            element:<Logingin></Logingin>
+           }
+            
         ]
     },
     {path:'*',element:<div>not found</div>}
