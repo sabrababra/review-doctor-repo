@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/AuthProvider';
 
 const Header = () => {
     const { user, providerLogOut } = useContext(AuthContext);
-    console.log(user);
+    
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
