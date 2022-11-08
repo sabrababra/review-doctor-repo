@@ -1,7 +1,7 @@
 import Main from "../layout/Main";
 import Blogs from "../pages/Blogs/Blogs";
 import Home from "../pages/Home/Home";
-import Logingin from "../pages/Logingin/Logingin";
+import Login from "../pages/Login/Login";
 
 import Services from "../pages/Services/Services";
 import SignUp from "../pages/SignUp/SignUp";
@@ -38,7 +38,7 @@ export const router=createBrowserRouter([
            },
            {
             path:'/login',
-            element:<Logingin></Logingin>
+            element:<Login></Login>
            }
             
         ]
