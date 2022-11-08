@@ -2,12 +2,13 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FiLogIn, FiLogOut } from 'react-icons/fi'
 import { AuthContext } from '../../context/AuthProvider';
+import logo from '../../assets/logo.png';
 
 const Header = () => {
     const { user, providerLogOut } = useContext(AuthContext);
 
     return (
-        <div className="navbar bg-base-100 sticky top-0 ">
+        <div className="navbar bg-base-100 sticky top-0 z-50 ">
             <div className="navbar-start">
 
                 {/* for mobile  */}
@@ -18,12 +19,23 @@ const Header = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to='/home' >Home</Link></li>
                         <li><Link to='/services' className="justify-between">Services</Link></li>
+                        {
+                            user?.uid &&
+                            <>
+                                <li> <Link to='/reviews' >My Reviews</Link></li>
+                                <li> <Link to='/addServices' >Add Service</Link></li>
+                            </>
+
+                        }
                         <li><Link to='/blogs' >Blogs</Link></li>
                     </ul>
                 </div>
 
                 {/* logo  */}
-                <Link className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+                <Link to='/' className="btn btn-ghost normal-case text-xl">
+                    <img className='w-8 ' src={logo} alt="" />
+                    <h1>Health <span className='text-primary'>Care</span></h1>
+                </Link>
             </div>
 
             {/* for desktop  */}
@@ -32,7 +44,7 @@ const Header = () => {
                     <li><Link to='/home' >Home</Link></li>
                     <li> <Link to='/services' >Services</Link></li>
                     {
-                    user?.uid &&
+                        user?.uid &&
                         <>
                             <li> <Link to='/reviews' >My Reviews</Link></li>
                             <li> <Link to='/addServices' >Add Service</Link></li>

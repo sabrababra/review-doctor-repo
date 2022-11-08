@@ -12,7 +12,7 @@ const Services = () => {
                 comment='Total: 10 Services'
             />
 
-            <div className='grid grid-cols-4 gap-4 w-11/12 mx-auto my-10'>
+            <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 w-11/12 mx-auto my-10'>
                 {
                     [1, 2, 3, 4, 5, 6, 7].map((service) => <ServiceCard
                         key={service}
