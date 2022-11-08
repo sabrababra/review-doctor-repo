@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/AuthProvider';
 
 const Header = () => {
     const { user, providerLogOut } = useContext(AuthContext);
-    
+
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -31,6 +31,14 @@ const Header = () => {
                 <ul className="menu menu-horizontal p-0">
                     <li><Link to='/home' >Home</Link></li>
                     <li> <Link to='/services' >Services</Link></li>
+                    {
+                    user?.uid &&
+                        <>
+                            <li> <Link to='/reviews' >My Reviews</Link></li>
+                            <li> <Link to='/addServices' >Add Service</Link></li>
+                        </>
+
+                    }
                     <li><Link to='/blogs' >Blogs</Link></li>
                 </ul>
             </div>

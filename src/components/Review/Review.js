@@ -27,6 +27,8 @@ const Review = () => {
                     <span>Founder & CEO</span>
                 </div>
             </div>
+
+            
         </div>
     );
 };

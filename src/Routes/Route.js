@@ -3,6 +3,7 @@ import Blogs from "../pages/Blogs/Blogs";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Profile from "../pages/Profile/Profile";
+import Reviews from "../pages/Reviews/Reviews";
 
 import Services from "../pages/Services/Services";
 import SignUp from "../pages/SignUp/SignUp";
@@ -44,6 +45,11 @@ export const router = createBrowserRouter([
            {
                 path: '/profile',
                 element: <Profile />
+            }
+            ,
+           {
+                path: '/reviews',
+                element: <Reviews />
             }
 
         ]
