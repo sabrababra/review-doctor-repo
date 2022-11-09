@@ -98,14 +98,15 @@ const SingleReviewCard = ({ review, getReviews }) => {
 
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Review</span>
+                                        <span className="label-text">Review comment</span>
                                     </label>
                                     <input
                                         type="text"
-                                        placeholder="Service image url"
+                                        placeholder="Write your review"
                                         className="input input-bordered"
                                         value={commentInput}
                                         onChange={(e) => setCommentInput(e.target.value)}
+                                        required
                                     />
                                 </div>
 
