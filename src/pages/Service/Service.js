@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { json, Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../context/AuthProvider';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const Service = () => {
     const { user } = useContext(AuthContext);
@@ -80,7 +82,12 @@ const Service = () => {
 
                 {/* details  */}
                 <div className=' col-span-3 lg:col-span-2 bg-white text-left p-10 rounded-t-xl rounded-l-xl'>
-                    <img className='w-6/12 mx-auto' src={serviceData?.img} alt="" />
+                    <PhotoProvider>
+                        <PhotoView src={serviceData?.img}>
+                            <img className='w-6/12 mx-auto' src={serviceData?.img} alt="" />
+                        </PhotoView>
+                    </PhotoProvider>
+
                     <h1 className='text-2xl my-5 font-semibold'>Service Name: {serviceData?.title}</h1>
                     <p className='text-xl text-primary'>Price: {serviceData?.price}</p>
                     <p className='text-xl text-primary'>Rating: {serviceData?.rating}</p>

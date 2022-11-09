@@ -11,3 +11,4 @@
 - Firebase
 - React-icons
 - React-toastify
+- react-photo-view
