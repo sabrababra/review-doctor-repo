@@ -3,6 +3,7 @@ import AddService from "../pages/AddService/AddService";
 import Blogs from "../pages/Blogs/Blogs";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
+import NotFound from "../pages/NotFound/NotFound";
 import Profile from "../pages/Profile/Profile";
 import Reviews from "../pages/Reviews/Reviews";
 
@@ -58,5 +59,5 @@ export const router = createBrowserRouter([
 
         ]
     },
-    { path: '*', element: <div>not found</div> }
+    { path: '*', element: <NotFound></NotFound> }
 ])

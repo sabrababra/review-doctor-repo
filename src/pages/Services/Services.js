@@ -4,7 +4,9 @@ import ServiceCard from '../../components/ServiceCard';
 import UseTitle from '../../hooks/UseTitle';
 
 const Services = () => {
-    UseTitle('Services')
+    UseTitle('Services');
+
+    
     return (
         <div className='bg-base-200'>
             <HeadTitle

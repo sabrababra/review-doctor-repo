@@ -5,6 +5,8 @@ import UseTitle from '../../hooks/UseTitle.js';
 
 const Reviews = () => {
     UseTitle('Reviews');
+
+    
     return (
         <div className='bg-base-200'>
 

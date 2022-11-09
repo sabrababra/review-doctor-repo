@@ -3,6 +3,8 @@ import UseTitle from '../../hooks/UseTitle';
 
 const AddService = () => {
     UseTitle('Add Services');
+
+    
     return (
         <div className='min-h-screen bg-base-200 flex justify-center items-center'>
             <div>
