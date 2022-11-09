@@ -40,6 +40,11 @@ const Service = () => {
         getReviewsData();
     }, [user]);
 
+    const handleClean = () => {
+        setCommentInput('');
+        setRatingInput(5);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -64,6 +69,7 @@ const Service = () => {
             .then(data => {
                 getReviewsData();
                 toast.success('Update successfully');
+                handleClean();
             })
 
     };
@@ -74,7 +80,7 @@ const Service = () => {
 
                 {/* details  */}
                 <div className=' col-span-3 lg:col-span-2 bg-white text-left p-10 rounded-t-xl rounded-l-xl'>
-                    <img className='w-full' src={serviceData?.img} alt="" />
+                    <img className='w-6/12 mx-auto' src={serviceData?.img} alt="" />
                     <h1 className='text-2xl my-5 font-semibold'>Service Name: {serviceData?.title}</h1>
                     <p className='text-xl text-primary'>Price: {serviceData?.price}</p>
                     <p className='text-xl text-primary'>Rating: {serviceData?.rating}</p>
@@ -93,8 +99,8 @@ const Service = () => {
 
                     <div className='divide' />
 
-                    <div>
-                        {
+                    <div className=' overflow-y-auto max-h-screen'>
+                        {reviewsData.length > 0 ?
                             reviewsData.map((review) => <div
                                 key={review?._id}
                                 className='p-4'
@@ -117,15 +123,9 @@ const Service = () => {
                                     </div>
                                 </div>
 
-                                <h1></h1>
-
-                                <div className='grid grid-cols-2 gap-4 items-center'>
-
-
-
-                                </div>
-
                             </div>)
+                            :
+                            <p>This service has no review</p>
                         }
                     </div>
                 </div>
@@ -135,7 +135,7 @@ const Service = () => {
             <input type="checkbox" id={`addModal_${serviceData?._id}`} className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
-                    <label htmlFor={`addModal_${serviceData?._id}`} className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label htmlFor={`addModal_${serviceData?._id}`} className="btn btn-sm btn-circle absolute right-2 top-2" onClick={() => handleClean()}>✕</label>
 
                     <div className="card w-full max-w-sm mx-auto  bg-base-100">
                         <form onSubmit={handleSubmit}>
@@ -192,11 +192,11 @@ const Service = () => {
             <input type="checkbox" id={`errorModal_${serviceData?._id}`} className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
-                    <label htmlFor={`errorModal_${serviceData?._id}`} className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label htmlFor={`errorModal_${serviceData?._id}`} className="btn btn-sm btn-circle absolute right-2 top-2" onClick={() => handleClean()}>✕</label>
 
                     <div>
-                        <h3 className="text-lg font-bold mb-10"
-                        >Please login to add a review
+                        <h3 className="text-lg font-bold mb-10 text-error"
+                        >Please login to add a review !
                         </h3>
 
                         <div>
@@ -204,7 +204,7 @@ const Service = () => {
                                 to='/login'
                                 htmlFor={`errorModal_${serviceData?._id}`}
                                 className=' mx-10 btn btn-error'>
-                                Login
+                                Login now
                             </Link>
                         </div>
                     </div>

@@ -16,7 +16,7 @@ const Home = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch('http://localhost:5000/services')
+        fetch('http://localhost:5000/homeServices?size=3')
             .then(res => res.json())
             .then(data => {
                 setServicesData(data);
@@ -42,7 +42,7 @@ const Home = () => {
 
                     <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
                         {
-                            servicesData.slice(0, 3).map((service) => <ServiceCard
+                            servicesData.map((service) => <ServiceCard
                                 key={service._id}
                                 service={service}
                             />)
