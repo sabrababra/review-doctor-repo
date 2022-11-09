@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const SingleReviewCard = ({ review }) => {
+const SingleReviewCard = ({ review, getReviews }) => {
+    const { _id, comment, rating, serviceName } = review;
+    const [commentInput, setCommentInput] = useState(comment || '');
+    const [ratingInput, setRatingInput] = useState(rating || 5);
 
     const handleDeleteReview = (id) => {
         console.log('delete id:', id);
@@ -8,7 +11,31 @@ const SingleReviewCard = ({ review }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('ok');
+
+        const updateData = {
+            comment: commentInput,
+            rating: parseInt(ratingInput)
+        };
+
+        console.log(updateData);
+
+        fetch(`http://localhost:5000/review/${_id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(updateData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                getReviews();
+
+                if (data?.comment) {
+                    console.log('ok');
+                }
+            })
+
     };
 
 
@@ -16,9 +43,9 @@ const SingleReviewCard = ({ review }) => {
         <>
             <div className="card bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="card-title">Service Name :</h2>
-                    <p>Rating: 5 star</p>
-                    <p className='mb-10'>Review: </p>
+                    <h2 className="card-title">Service Name : {serviceName}</h2>
+                    <p>Rating: {rating}</p>
+                    <p className='mb-10'>Review: {comment}</p>
 
                     <div className="card-actions justify-around">
                         <label
@@ -57,7 +84,7 @@ const SingleReviewCard = ({ review }) => {
                                         type="text"
                                         placeholder="enter services name"
                                         className="input input-bordered"
-                                        value='service name for api'
+                                        value={serviceName}
                                         disabled
                                     />
                                 </div>
@@ -70,6 +97,8 @@ const SingleReviewCard = ({ review }) => {
                                         type="text"
                                         placeholder="Service image url"
                                         className="input input-bordered"
+                                        value={commentInput}
+                                        onChange={(e) => setCommentInput(e.target.value)}
                                     />
                                 </div>
 
@@ -77,11 +106,18 @@ const SingleReviewCard = ({ review }) => {
                                     <label className="label">
                                         <span className="label-text">Rating</span>
                                     </label>
-                                    <input
-                                        type="text"
-                                        placeholder="enter your Service price"
-                                        className="input input-bordered"
-                                    />
+                                    <select
+                                        className="select select-info w-full max-w-xs"
+                                        value={ratingInput}
+                                        onChange={(e) => setRatingInput(e.target.value)}
+                                    >
+                                        <option disabled selected>Select Star</option>
+                                        <option value={1}>1 Star</option>
+                                        <option value={2}>2 Star</option>
+                                        <option value={3}>3 Start</option>
+                                        <option value={4}>4 Start</option>
+                                        <option value={5}>5 Start</option>
+                                    </select>
                                 </div>
 
                                 <div className="form-control mt-6">

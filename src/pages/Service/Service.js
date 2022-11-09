@@ -9,7 +9,7 @@ const Service = () => {
     const [reviewsData, setReviewsData] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
+    const getReviewsData = () => {
         setLoading(true);
         fetch(`http://localhost:5000/service/${id}`)
             .then(res => res.json())
@@ -29,6 +29,10 @@ const Service = () => {
 
                 setLoading(false);
             });
+    }
+
+    useEffect(() => {
+        getReviewsData();
     }, [user]);
 
     return (
@@ -57,7 +61,7 @@ const Service = () => {
                     <div>
                         {
                             reviewsData.map((review) => <div key={review?._id}>
-                                <h1>{review?.review}</h1>
+                                <h1>{review?.comment}</h1>
                                 <p>{review?.name}</p>
                                 <p>{review?.rating}</p>
                             </div>)
