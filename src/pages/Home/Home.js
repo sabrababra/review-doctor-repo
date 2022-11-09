@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Appoinment from '../../components/Appoinment';
 import Banner from '../../components/Banner';
 import Review from '../../components/Review/Review';
 import ServiceCard from '../../components/ServiceCard';
+import { AuthContext } from '../../context/AuthProvider';
 import UseTitle from '../../hooks/UseTitle';
 
 
 const Home = () => {
     UseTitle('Home');
+    const { user } = useContext(AuthContext);
+    const [servicesData, setServicesData] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+        fetch('http://localhost:5000/services')
+            .then(res => res.json())
+            .then(data => {
+                setServicesData(data);
+                setLoading(false);
+            });
+    }, [user]);
+
     return (
         <div>
             <Banner />
@@ -27,8 +42,8 @@ const Home = () => {
 
                     <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
                         {
-                            [1, 2, 3, 4, 5, 6, 7].slice(0, 3).map((service) => <ServiceCard
-                                key={service}
+                            servicesData.slice(0, 3).map((service) => <ServiceCard
+                                key={service._id}
                                 service={service}
                             />)
                         }

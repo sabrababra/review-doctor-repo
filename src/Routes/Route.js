@@ -6,6 +6,7 @@ import Login from "../pages/Login/Login";
 import NotFound from "../pages/NotFound/NotFound";
 import Profile from "../pages/Profile/Profile";
 import Reviews from "../pages/Reviews/Reviews";
+import Service from "../pages/Service/Service";
 
 import Services from "../pages/Services/Services";
 import SignUp from "../pages/SignUp/SignUp";
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
             {
                 path: '/services',
                 element: <Services></Services>
+            },
+            {
+                path: '/service/:id',
+                element: <Service />
             },
             {
                 path: '/signup',
