@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const SingleReviewCard = ({ review, getReviews }) => {
     const { _id, comment, rating, serviceName } = review;
@@ -7,6 +8,17 @@ const SingleReviewCard = ({ review, getReviews }) => {
 
     const handleDeleteReview = (id) => {
         console.log('delete id:', id);
+
+        fetch(`http://localhost:5000/review/${id}`, {
+            method: 'DELETE',
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                getReviews();
+                toast.error('Delete successfully');
+            })
+
     };
 
     const handleSubmit = (e) => {
@@ -17,8 +29,6 @@ const SingleReviewCard = ({ review, getReviews }) => {
             rating: parseInt(ratingInput)
         };
 
-        console.log(updateData);
-
         fetch(`http://localhost:5000/review/${_id}`, {
             method: 'PATCH',
             headers: {
@@ -28,12 +38,8 @@ const SingleReviewCard = ({ review, getReviews }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 getReviews();
-
-                if (data?.comment) {
-                    console.log('ok');
-                }
+                toast.success('Update successfully');
             })
 
     };
@@ -50,7 +56,8 @@ const SingleReviewCard = ({ review, getReviews }) => {
                     <div className="card-actions justify-around">
                         <label
                             htmlFor={`editModal_${review}`}
-                            className="btn btn-info">
+                            className="btn btn-info"
+                            >
                             Edit
                         </label>
 
@@ -152,7 +159,7 @@ const SingleReviewCard = ({ review, getReviews }) => {
                             <label
                                 htmlFor={`deleteModal_${review}`}
                                 className=' mx-10 btn btn-error'
-                                onClick={() => handleDeleteReview(review)}>
+                                onClick={() => handleDeleteReview(_id)}>
                                 Yes
                             </label>
                             <label
