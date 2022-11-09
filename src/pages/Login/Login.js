@@ -14,6 +14,7 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
+
     UseTitle('Login');
 
     const handleLogin = (event) => {
@@ -21,13 +22,33 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+
         signInWithEmail(email, password)
-            .then(res => {
-                const user = res.user;
-                form.reset();
-                toast.success('Login successfully');
-                console.log(user);
-                setError('');
+            .then(result => {
+                const user = result.user;
+
+
+                const currentUser = {
+                    email: user.email
+                }
+
+                console.log(currentUser);
+
+                // get jwt token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem('token', data.token);
+                        navigate(from, { replace: true });
+                    });
+
             })
             .catch(error => {
                 console.error(error);
@@ -40,12 +61,31 @@ const Login = () => {
     const googleProvider = new GoogleAuthProvider();
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
-            .then(res => {
-                const user = res.user;
-                //console.log(user);
-                // form.reset();
-                navigate(from, { replace: true });
-                toast.success('Login successfully');
+            .then(result => {
+                const user = result.user;
+
+
+                const currentUser = {
+                    email: user.email
+                }
+
+                console.log(currentUser);
+
+                // get jwt token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem('token', data.token);
+                        navigate(from, { replace: true });
+                    });
+
             })
             .catch(error => {
                 console.error('error: ', error);
@@ -56,12 +96,31 @@ const Login = () => {
     const gitHubProvider = new GithubAuthProvider()
     const handleGithubSignIn = () => {
         providerLogin(gitHubProvider)
-            .then(res => {
-                const user = res.user;
-                //console.log(user);
-                // form.reset();
-                navigate(from, { replace: true });
-                toast.success('Login successfully');
+            .then(result => {
+                const user = result.user;
+
+
+                const currentUser = {
+                    email: user.email
+                }
+
+                console.log(currentUser);
+
+                // get jwt token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem('token', data.token);
+                        navigate(from, { replace: true });
+                    });
+
             })
             .catch(error => {
                 console.error('error: ', error);

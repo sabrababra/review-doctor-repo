@@ -12,7 +12,9 @@ const SingleReviewCard = ({ review, getReviews }) => {
 
         fetch(`http://localhost:5000/review/${id}`, {
             method: 'DELETE',
-
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
@@ -34,6 +36,7 @@ const SingleReviewCard = ({ review, getReviews }) => {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(updateData)
         })
@@ -58,7 +61,7 @@ const SingleReviewCard = ({ review, getReviews }) => {
                         <label
                             htmlFor={`editModal_${review}`}
                             className="btn btn-info"
-                            >
+                        >
                             Edit
                         </label>
 
