@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { json, Link, useParams } from 'react-router-dom';
+import { json, Link, useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../context/AuthProvider';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
@@ -11,6 +11,7 @@ const Service = () => {
     const { id } = useParams();
     const [serviceData, setServiceData] = useState([]);
     const [reviewsData, setReviewsData] = useState([]);
+    const location = useLocation();
 
     const [commentInput, setCommentInput] = useState('');
     const [ratingInput, setRatingInput] = useState(5);
@@ -217,6 +218,7 @@ const Service = () => {
                                     <div>
                                         <Link
                                             to='/login'
+                                            state={{ from: location }} replace
                                             htmlFor={`errorModal_${serviceData?._id}`}
                                             className=' mx-10 btn btn-error'>
                                             Login now
