@@ -12,7 +12,7 @@ const Reviews = () => {
 
     const getReviews = () => {
         setLoading(true);
-        fetch(`http://localhost:5000/myReviews?email=${user?.email}`,{
+        fetch(`https://y-plum-zeta.vercel.app/myReviews?email=${user?.email}`,{
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`
@@ -26,7 +26,7 @@ const Reviews = () => {
     }
     useEffect(() => {
         getReviews();
-    }, [user]);
+    }, [user?.uid]);
 
     return (
         <div className='bg-base-200'>

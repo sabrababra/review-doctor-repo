@@ -18,7 +18,7 @@ const Service = () => {
 
     const getReviewsData = () => {
         setLoading(true);
-        fetch(`http://localhost:5000/service/${id}`)
+        fetch(`https://y-plum-zeta.vercel.app/service/${id}`)
             .then(res => res.json())
             .then(data => {
                 setServiceData(data);
@@ -26,7 +26,7 @@ const Service = () => {
                 if (data._id) {
                     console.log(data);
 
-                    fetch(`http://localhost:5000/reviews?id=${data.service_id}`)
+                    fetch(`https://y-plum-zeta.vercel.app/reviews?id=${data.service_id}`)
                         .then(res => res.json())
                         .then(revData => {
                             setReviewsData(revData);
@@ -40,7 +40,7 @@ const Service = () => {
 
     useEffect(() => {
         getReviewsData();
-    }, [user]);
+    }, [user?.uid]);
 
     const handleClean = () => {
         setCommentInput('');
@@ -60,7 +60,7 @@ const Service = () => {
             rating: parseInt(ratingInput),
         };
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://y-plum-zeta.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

@@ -12,20 +12,22 @@ const Services = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch('http://localhost:5000/services')
+        fetch('https://y-plum-zeta.vercel.app/services')
             .then(res => res.json())
             .then(data => {
                 setServicesData(data);
                 setLoading(false);
             });
-    }, [user]);
+    }, [user?.uid]);
 
 
     return (
         <div className='bg-base-200'>
             <HeadTitle
                 title='Services'
-                comment='Total: 10 Services'
+                comment= {servicesData.length} 
+
+
             />
 
             <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 w-11/12 mx-auto my-10'>

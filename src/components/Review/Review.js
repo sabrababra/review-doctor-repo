@@ -12,8 +12,7 @@ const Review = () => {
 
             <div className="flex">
                 <div className="comments">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Non, placeat quisquam? Animi sunt, dignissimos est sit reiciendis iste ipsa error?
+                    Prome is a best doctor in my life ever. She is careful.
                 </div>
                 <div className="profile">
                     <div className="avatar">
@@ -23,8 +22,8 @@ const Review = () => {
                     </div>
 
                     {/* <img src='https://i.pinimg.com/originals/47/b1/47/47b147b6d88fea4bcd32344251784b24.jpg' alt="" /> */}
-                    <a href="#">John V. Bellanmy</a>
-                    <span>Founder & CEO</span>
+                    <a href="#"></a>
+                    <span>Dr.Sabrina Yesmin Prome</span>
                 </div>
             </div>
 

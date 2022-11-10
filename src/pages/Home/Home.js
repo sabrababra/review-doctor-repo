@@ -16,7 +16,7 @@ const Home = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch('http://localhost:5000/homeServices?size=3')
+        fetch('https://y-plum-zeta.vercel.app/homeServices?size=3')
             .then(res => res.json())
             .then(data => {
                 setServicesData(data);
