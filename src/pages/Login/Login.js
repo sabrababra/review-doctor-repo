@@ -9,7 +9,10 @@ import UseTitle from '../../hooks/UseTitle';
 
 const Login = () => {
     const [error, setError] = useState('');
+
     const { signInWithEmail, providerLogin } = useContext(AuthContext);
+
+    const [loading,setLoading] = useState(false);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -22,6 +25,8 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+
+        setLoading(true);
 
         signInWithEmail(email, password)
             .then(result => {
@@ -45,6 +50,8 @@ const Login = () => {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
+                        setLoading(false);
+                        setError('');
                         localStorage.setItem('token', data.token);
                         navigate(from, { replace: true });
                     });
@@ -53,6 +60,7 @@ const Login = () => {
             .catch(error => {
                 console.error(error);
                 setError(error.message);
+                setLoading(false);
             })
 
 
@@ -117,6 +125,7 @@ const Login = () => {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
+                        setError('');
                         localStorage.setItem('token', data.token);
                         navigate(from, { replace: true });
                     });
@@ -182,6 +191,9 @@ const Login = () => {
                                 </div>
                                 {
                                     error && <p className='text-red-500'>{error}</p>
+                                }
+                                {
+                                    loading && <span className="loader"></span>
                                 }
                                 <div className="form-control mt-6">
                                     <button className="btn btn-primary">Login</button>

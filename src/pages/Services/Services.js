@@ -3,6 +3,7 @@ import HeadTitle from '../../components/HeadTitle';
 import ServiceCard from '../../components/ServiceCard';
 import { AuthContext } from '../../context/AuthProvider';
 import UseTitle from '../../hooks/UseTitle';
+import Loader from '../../Shared/Loader/Loader';
 
 const Services = () => {
     UseTitle('Services');
@@ -22,24 +23,32 @@ const Services = () => {
 
 
     return (
-        <div className='bg-base-200'>
-            <HeadTitle
-                title='Services'
-                comment= {servicesData.length} 
+        <>
+
+            {
+                loading ? <Loader />
+                    :
+
+                    <div className='bg-base-200'>
+                        <HeadTitle
+                            title='Services'
+                            comment={servicesData.length}
 
 
-            />
+                        />
 
-            <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 w-11/12 mx-auto my-10'>
-                {
-                    servicesData.map((service) => <ServiceCard
-                        key={service._id}
-                        service={service}
-                    />)
-                }
-            </div>
+                        <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 w-11/12 mx-auto my-10'>
+                            {
+                                servicesData.map((service) => <ServiceCard
+                                    key={service._id}
+                                    service={service}
+                                />)
+                            }
+                        </div>
 
-        </div>
+                    </div>
+            }
+        </>
     );
 };
 
