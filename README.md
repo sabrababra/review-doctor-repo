@@ -15,32 +15,19 @@ It is a single-page review website for a doctor based on his/her skill. In the n
 
 
 ### Use Items:
-- React.js
-- React Router
-- Tailwind css
-- Daisyui
-- Firebase
-- React-icons
-- React-toastify
-- react-photo-view
-
-
-
-
-
-
-
-
-
-## Use item : 
-* React 
-*React router
-* Tailwind.
-* Daisyui.
-* Express js.
-* Nodemon.
-* 1 api Local-data
-* React icons
-* Theme changer
-* React to pdf
+* React.js
+* React Router
+* Tailwind css
+* Daisyui
+* Firebase
+* React-icons
+* React-toastify
+* react-photo-view
 * Html5 , css3 , js(es6)
+* mongodb
+
+
+
+
+
+
