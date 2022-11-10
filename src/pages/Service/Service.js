@@ -59,6 +59,7 @@ const Service = () => {
             serviceName: serviceData?.title,
             comment: commentInput,
             rating: parseInt(ratingInput),
+            date: new Date().toISOString(),
         };
 
         fetch('https://y-plum-zeta.vercel.app/reviews', {

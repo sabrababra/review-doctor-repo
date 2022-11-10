@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import { toast } from 'react-toastify';
 import loginImg from '../../assets/login.jpg';
@@ -9,6 +9,8 @@ const SignUp = () => {
 
     const { createProviderWithEmail, updateUserProfile } = useContext(AuthContext);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
     UseTitle('Register')
 
     const handleRegister = (event) => {
@@ -22,6 +24,7 @@ const SignUp = () => {
 
         if (password === confirm) {
             setError('');
+            setLoading(true);
             createProviderWithEmail(email, password)
                 .then(res => {
                     const user = res.user;
@@ -32,6 +35,7 @@ const SignUp = () => {
                     setError('');
                 })
         } else {
+            setLoading(false);
             setError('Password does not match with confirm password');
         }
 
@@ -41,8 +45,14 @@ const SignUp = () => {
                 photoURL: photoURL
             }
             updateUserProfile(profile)
-                .then(() => { })
-                .catch(error => console.error(error));
+                .then(() => {
+                    setLoading(false);
+                    navigate('/')
+                })
+                .catch(error => {
+                    setLoading(false);
+                    console.error(error)
+                });
 
         }
     }
@@ -136,6 +146,9 @@ const SignUp = () => {
                                     </label>
 
                                 </div>
+                                {
+                                    loading && <span class="loader"></span>
+                                }
                                 {
                                     error && <p className='text-red-500'>{error}</p>
                                 }
