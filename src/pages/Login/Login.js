@@ -52,6 +52,7 @@ const Login = () => {
                         console.log(data);
                         setLoading(false);
                         setError('');
+                        toast.success("login Successfully");
                         localStorage.setItem('token', data.token);
                         navigate(from, { replace: true });
                     });
@@ -90,6 +91,7 @@ const Login = () => {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
+                        toast.success("login Successfully");
                         localStorage.setItem('token', data.token);
                         navigate(from, { replace: true });
                     });
@@ -126,6 +128,7 @@ const Login = () => {
                     .then(data => {
                         console.log(data);
                         setError('');
+                        toast.success("login Successfully");
                         localStorage.setItem('token', data.token);
                         navigate(from, { replace: true });
                     });
