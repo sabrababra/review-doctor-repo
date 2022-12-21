@@ -12,7 +12,7 @@ const ServiceCard = ({ service }) => {
             <PhotoProvider>
                 <PhotoView src={img}>
                     <figure className="px-10 pt-10">
-                        <img src={img} alt="Shoes" className="rounded-xl" />
+                        <img src={img} alt="Shoes" className="rounded-xl h-[300px]" />
                     </figure>
                 </PhotoView>
             </PhotoProvider>
@@ -22,7 +22,7 @@ const ServiceCard = ({ service }) => {
             <div className="card-body items-center text-center">
                 <h2 className="card-title">{title}</h2>
                 <p className='text-xl text-primary'>Price: {price}</p>
-                <p className='text-xl'>Rating: {rating}</p>
+                <p className='text-xl'>Rating:{rating}</p>
                 <p>{description.slice(0, 100)}...</p>
 
 
